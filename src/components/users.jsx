@@ -7,6 +7,9 @@ const Users = ({ users, ...rest }) => {
   console.log(rest);
   const count = users.length;
   const pageSize = 4;
+  const handlePageChange = (pageIndex) => {
+    console.log(pageIndex);
+  };
   return (
     <>
       {count > 0 && (
@@ -29,9 +32,11 @@ const Users = ({ users, ...rest }) => {
           </tbody>
         </table>
       )}
-      <Pagination itemsCount={count} />
-      {/* 1,2,3 */}
-      {/* users/pageSize */}
+      <Pagination
+        itemsCount={count}
+        pageSize={pageSize}
+        onPageChange={handlePageChange}
+      />
     </>
   );
 };
