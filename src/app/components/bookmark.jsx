@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-const Bookmark = ({ status, ...rest }) => {
+
+const Bookmark = ({ status, onClick }) => {
     // console.log(rest.onClick);
     // const Bookmark = (props) => {
     //     const { bookmark, _id, onToggleBookMark } = props;
@@ -10,12 +11,14 @@ const Bookmark = ({ status, ...rest }) => {
         buttonClass += "-fill";
     }
     return (
-        <button className="btn btn-outline-dark" onClick={rest.onClick}>
+        <button className="btn btn-outline-dark" onClick={onClick}>
             <i className={buttonClass}></i>
         </button>
     );
 };
 Bookmark.propTypes = {
-    status: PropTypes.bool.isRequired
+    status: PropTypes.bool.isRequired,
+    onClick: PropTypes.func.isRequired
 };
+
 export default Bookmark;

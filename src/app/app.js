@@ -12,6 +12,7 @@ function App() {
             prevState.filter((user) => user._id !== userID)
         );
     };
+
     const handleToggleBookMark = (id) => {
         setUsers(
             users.map((user) => {
@@ -22,6 +23,15 @@ function App() {
             })
         );
     };
+
+    // const handleMouseOver = (value) => {
+    //     console.log("Over", value);
+    // };
+
+    // const handleMouseOut = (value) => {
+    //     console.log("Out", value);
+    // };
+
     return (
         <>
             <SearchStatus length={users.length} />

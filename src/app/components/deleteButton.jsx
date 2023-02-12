@@ -1,9 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const DeleteButton = ({ _id, ...rest }) => {
+const DeleteButton = ({ onClick, isHovered }) => {
+    let buttonClass = "invisible";
+    if (isHovered) {
+        buttonClass = "visible";
+    }
     return (
-        <button className="btn btn-outline-danger trash" onClick={rest.onClick}>
+        <button
+            className={"btn btn-outline-danger trash " + buttonClass}
+            onClick={onClick}
+        >
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -18,6 +25,8 @@ const DeleteButton = ({ _id, ...rest }) => {
     );
 };
 DeleteButton.propTypes = {
-    _id: PropTypes.string.isRequired
+    onClick: PropTypes.func.isRequired,
+    isHovered: PropTypes.bool.isRequired
 };
+
 export default DeleteButton;

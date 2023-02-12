@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Bookmark from "./bookmark";
 import Qualitie from "./qualitie";
 import PropTypes from "prop-types";
@@ -15,10 +15,19 @@ const User = ({
     bookmark,
     onToggleBookMark
 }) => {
-    // console.log(bookmark);
+    const [userHovered, setUserHovered] = useState(false);
+
     return (
         <>
-            <tr key={_id}>
+            <tr
+                key={_id}
+                onMouseOver={() => {
+                    setUserHovered(true);
+                }}
+                onMouseOut={() => {
+                    setUserHovered(false);
+                }}
+            >
                 <td>{name}</td>
                 <td>
                     {qualities.map((qualitiy) => (
@@ -40,12 +49,14 @@ const User = ({
                         onClick={() => {
                             onDelete(_id);
                         }}
+                        isHovered={userHovered}
                     />
                 </td>
             </tr>
         </>
     );
 };
+
 User.propTypes = {
     _id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
@@ -55,7 +66,9 @@ User.propTypes = {
     rate: PropTypes.number.isRequired,
     onDelete: PropTypes.func.isRequired,
     bookmark: PropTypes.bool.isRequired,
-    onToggleBookMark: PropTypes.func.isRequired
+    onToggleBookMark: PropTypes.func.isRequired,
+    onMouseOver: PropTypes.func.isRequired,
+    onMouseOut: PropTypes.func.isRequired
 };
 
 export default User;

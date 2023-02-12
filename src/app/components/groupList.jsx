@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 const GroupList = ({ items, valueProperty, contentProperty }) => {
     console.log(items);
     console.log(Object.keys(items));
@@ -18,6 +19,7 @@ const GroupList = ({ items, valueProperty, contentProperty }) => {
         </ul>
     );
 };
+
 GroupList.defaultProps = {
     valueProperty: "_id",
     contentProperty: "name"
@@ -27,4 +29,5 @@ GroupList.propTypes = {
     valueProperty: PropTypes.string.isRequired,
     contentProperty: PropTypes.string.isRequired
 };
+
 export default GroupList;

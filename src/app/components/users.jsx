@@ -20,12 +20,13 @@ const Users = ({ users: allUsers, ...rest }) => {
     const handleProfessionSelect = (second) => {
         console.log(second);
     };
+
     const handlePageChange = (pageIndex) => {
         setCurrentPage(pageIndex);
     };
 
     const userCrop = paginate(allUsers, currentPage, pageSize);
-    // console.log(userCrop);
+
     return (
         <>
             {professions && (
@@ -66,7 +67,9 @@ const Users = ({ users: allUsers, ...rest }) => {
         </>
     );
 };
+
 Users.propTypes = {
     users: PropTypes.array
 };
+
 export default Users;
