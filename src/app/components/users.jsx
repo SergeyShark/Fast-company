@@ -14,14 +14,8 @@ const Users = ({ users: allUsers, ...rest }) => {
     const pageSize = 4;
 
     useEffect(() => {
-        console.log("send request");
         API.professions.fetchAll().then((data) => setProfessions(data));
-        // console.log("change current page");
     }, []);
-
-    useEffect(() => {
-        console.log(professions);
-    }, [professions]);
 
     const handleProfessionSelect = (second) => {
         console.log(second);
@@ -34,13 +28,18 @@ const Users = ({ users: allUsers, ...rest }) => {
     // console.log(userCrop);
     return (
         <>
-            <GroupList
-                items={professions}
-                onItemSelect={handleProfessionSelect}
-            />
+            {professions && (
+                <GroupList
+                    items={professions}
+                    onItemSelect={handleProfessionSelect}
+                    valueProperty="id"
+                    contentProperty="name"
+                />
+            )}
+
             {count > 0 && (
-                <table className="table">
-                    <thead>
+                <table className="table table-striped table-hover">
+                    <thead className="table-light">
                         <tr>
                             <th scope="col">Имя</th>
                             <th scope="col">Качества</th>

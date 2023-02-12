@@ -5,12 +5,12 @@ const Bookmark = ({ status, ...rest }) => {
     // const Bookmark = (props) => {
     //     const { bookmark, _id, onToggleBookMark } = props;
     // console.log(props.bookmark);
-    let buttonClass = "bi bi-bookmark-check";
+    let buttonClass = "bi bi-bookmark";
     if (status) {
         buttonClass += "-fill";
     }
     return (
-        <button onClick={rest.onClick}>
+        <button className="btn btn-outline-dark" onClick={rest.onClick}>
             <i className={buttonClass}></i>
         </button>
     );
