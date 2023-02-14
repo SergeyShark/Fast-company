@@ -9,6 +9,7 @@ import API from "../api";
 const Users = ({ users: allUsers, ...rest }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [professions, setProfessions] = useState();
+    const [selectedProf, setSelectedProf] = useState();
 
     const count = allUsers.length;
     const pageSize = 4;
@@ -17,25 +18,36 @@ const Users = ({ users: allUsers, ...rest }) => {
         API.professions.fetchAll().then((data) => setProfessions(data));
     }, []);
 
-    const handleProfessionSelect = (second) => {
-        console.log(second);
+    const handleProfessionSelect = (item) => {
+        setSelectedProf(item);
     };
 
     const handlePageChange = (pageIndex) => {
         setCurrentPage(pageIndex);
     };
-
-    const userCrop = paginate(allUsers, currentPage, pageSize);
-
+    const filteredUsers = selectedProf
+        ? allUsers.filter((user) => user.profession === selectedProf)
+        : allUsers;
+    const userCrop = paginate(filteredUsers, currentPage, pageSize);
+    const clearFilter = () => {
+        setSelectedProf();
+    };
     return (
         <>
             {professions && (
-                <GroupList
-                    items={professions}
-                    onItemSelect={handleProfessionSelect}
-                    valueProperty="id"
-                    contentProperty="name"
-                />
+                <>
+                    <GroupList
+                        selectedItem={selectedProf}
+                        items={professions}
+                        onItemSelect={handleProfessionSelect}
+                    />
+                    <button
+                        className="btn btn-secondary mt-2"
+                        onClick={clearFilter}
+                    >
+                        Очистить
+                    </button>
+                </>
             )}
 
             {count > 0 && (
